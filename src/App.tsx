@@ -1,58 +1,47 @@
 import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
 import './App.css';
-
+import "primereact/resources/themes/lara-light-indigo/theme.css";
+import 'primereact/resources/primereact.min.css';
+import 'primeicons/primeicons.css';
+import "primeflex/primeflex.css";
+import { BrowserRouter, Navigate, Route, Routes, useLocation } from 'react-router-dom';
+import { useAppSelector } from './app/hooks';
+import { isUserLoggedin } from './features/auth/authSlice';
+import Login from './pages/login';
+import Layout from './shares/Layout';
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
+    <>
+        <BrowserRouter>
+          <Routes>
+            <Route element={  <Layout />}>
+              <Route
+                path="/"
+                element={
+                  <RequireAuth>
+                    <ProtectedPage></ProtectedPage>
+                  </RequireAuth>
+                }
+                />
+            </Route>
+            
+            <Route path="/login" element={<Login />}></Route>
+          </Routes>
+        </BrowserRouter>
+    </>
   );
 }
+function RequireAuth({ children }: { children: JSX.Element }) {
 
+  const isLoggedIn = useAppSelector(isUserLoggedin);
+  let location = useLocation();
+  if (!isLoggedIn) {
+    return <Navigate to="/login" state={{ from: location }} replace />;
+  }
+
+  return children;
+}
+function ProtectedPage() {
+  return <h3>Protected</h3>;
+}
 export default App;

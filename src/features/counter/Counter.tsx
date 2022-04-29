@@ -10,40 +10,36 @@ import {
   selectCount,
 } from './counterSlice';
 import styles from './Counter.module.css';
+import { Button } from 'primereact/button';
+import { InputNumber } from 'primereact/inputnumber';
 
 export function Counter() {
   const count = useAppSelector(selectCount);
   const dispatch = useAppDispatch();
-  const [incrementAmount, setIncrementAmount] = useState('2');
+  const [incrementAmount, setIncrementAmount] = useState(2);
 
   const incrementValue = Number(incrementAmount) || 0;
 
   return (
     <div>
       <div className={styles.row}>
-        <button
-          className={styles.button}
-          aria-label="Decrement value"
+        <Button
+          label="Decrement value"
           onClick={() => dispatch(decrement())}
         >
           -
-        </button>
+        </Button>
         <span className={styles.value}>{count}</span>
-        <button
-          className={styles.button}
-          aria-label="Increment value"
+        <Button
+          label="Increment value"
           onClick={() => dispatch(increment())}
         >
           +
-        </button>
+        </Button>
       </div>
       <div className={styles.row}>
-        <input
-          className={styles.textbox}
-          aria-label="Set increment amount"
-          value={incrementAmount}
-          onChange={(e) => setIncrementAmount(e.target.value)}
-        />
+        
+        <InputNumber value={incrementAmount} onValueChange={(e) => setIncrementAmount(e.value??0)} />
         <button
           className={styles.button}
           onClick={() => dispatch(incrementByAmount(incrementValue))}
