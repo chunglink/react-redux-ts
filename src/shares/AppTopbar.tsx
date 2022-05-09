@@ -1,44 +1,49 @@
-import React  from 'react';
-import { Link } from 'react-router-dom';
-import classNames from 'classnames';
+import React from "react";
+import { Link } from "react-router-dom";
+import { classNames } from "primereact/utils";
+import { Avatar } from "primereact/avatar";
+export const AppTopbar = (props: any) => {
+  return (
+    <div className="layout-topbar">
+      <Link to="/" className="layout-topbar-logo">
+        <img src={"logo_home.png"} alt="logo" />
+      </Link>
 
-export const AppTopbar = (props:any) => {
+      <button
+        type="button"
+        className="p-link  layout-menu-button layout-topbar-button"
+        onClick={props.onToggleMenuClick}
+      >
+        <i className="pi pi-bars" />
+      </button>
 
-    return (
-        <div className="layout-topbar">
-            <Link to="/" className="layout-topbar-logo">
-                <img src={props.layoutColorMode === 'light' ? 'assets/layout/images/logo-dark.svg' : 'assets/layout/images/logo-white.svg'} alt="logo"/>
-                <span>SAKAI</span>
-            </Link>
+      <button
+        type="button"
+        className="p-link layout-topbar-menu-button"
+        onClick={props.onMobileTopbarMenuClick}
+      >
+        <Avatar icon="pi pi-user" shape="circle" />
+        <span style={{ marginLeft: 10, paddingTop: 5, color: "#ffffff" }}>
+          Chungnt
+        </span>
+      </button>
 
-            <button type="button" className="p-link  layout-menu-button layout-topbar-button" onClick={props.onToggleMenuClick}>
-                <i className="pi pi-bars"/>
-            </button>
-
-            <button type="button" className="p-link layout-topbar-menu-button layout-topbar-button" onClick={props.onMobileTopbarMenuClick}>
-                <i className="pi pi-ellipsis-v" />
-            </button>
-
-                <ul className={classNames("layout-topbar-menu lg:flex origin-top", {'layout-topbar-menu-mobile-active': props.mobileTopbarMenuActive })}>
-                    <li>
-                        <button className="p-link layout-topbar-button" onClick={props.onMobileSubTopbarMenuClick}>
-                            <i className="pi pi-calendar"/>
-                            <span>Events</span>
-                        </button>
-                    </li>
-                    <li>
-                        <button className="p-link layout-topbar-button" onClick={props.onMobileSubTopbarMenuClick}>
-                            <i className="pi pi-cog"/>
-                            <span>Settings</span>
-                        </button>
-                    </li>
-                    <li>
-                        <button className="p-link layout-topbar-button" onClick={props.onMobileSubTopbarMenuClick}>
-                            <i className="pi pi-user"/>
-                            <span>Profile</span>
-                        </button>
-                    </li>
-                </ul>
-        </div>
-    );
-}
+      <ul
+        className={classNames("layout-topbar-menu", {
+          "layout-topbar-menu-mobile-active": props.mobileTopbarMenuActive,
+        })}
+      >
+        <li>
+          <button
+            className="p-link layout-topbar-button"
+            onClick={props.onMobileSubTopbarMenuClick}
+            style={{ color: "gray" }}
+          >
+            <i className="pi pi-sign-out" />
+            <span>Đăng xuất</span>
+          </button>
+        </li>
+      </ul>
+    </div>
+  );
+};
