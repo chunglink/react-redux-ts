@@ -1,22 +1,23 @@
 import React, { useState } from "react";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
-import { useSelector } from "react-redux";
 import { partners, totalPartners } from "@/features/partner/partnerSlice";
 import PartnerDto from "@/features/partner/types/partnerDto";
 import { Button } from "primereact/button";
 import { template } from "@/shares/paginatorTemplate";
 import CreateOrEditPartnerDialog from "./components/CreateOrEditPartnerDialog";
+import { useAppSelector } from "@/app/hooks";
 
 const PartnerList = () => {
-  const partnerList: PartnerDto[] = useSelector(partners);
-  const totalRecords: number = useSelector(totalPartners);
+  const partnerList: PartnerDto[] = useAppSelector(partners);
+  const totalRecords: number = useAppSelector(totalPartners);
   const [rows, setRows] = useState(10);
+  const [page, setPage] = useState(0);
   const [creationDialogVisable, setCreationDialogVisable] = useState(false);
 
   const indexBodyTemplate = (rowData: PartnerDto): number => {
     return (
-      partnerList.findIndex((item) => item.pa_id === rowData.pa_id) * rows + 1
+      partnerList.findIndex((item) => item.pa_id === rowData.pa_id) * page + 1
     );
   };
   const actionBodyTemplate = (rowData: PartnerDto) => {

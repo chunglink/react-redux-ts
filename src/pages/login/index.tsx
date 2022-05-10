@@ -5,13 +5,17 @@ import { Button } from "primereact/button";
 import { useAppDispatch } from "@/app/hooks";
 import { loginAsync } from "@/features/auth/authSlice";
 import { useNavigate } from "react-router-dom";
-import { Image } from "primereact/image";
 const Login = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const handleLogin = async () => {
-    await dispatch(loginAsync());
+    await dispatch(
+      loginAsync({
+        name: "user1",
+        password: "password1",
+      })
+    );
     navigate("/", { replace: true });
   };
   return (

@@ -1,7 +1,16 @@
+import PartnerDto from "@/features/partner/types/partnerDto";
 import { RootState } from "@/app/store";
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { addPartner } from "./api";
 import PartnerState from "./types/partnerState";
-
+export const addPartnerAsync = createAsyncThunk(
+  "partner/add",
+  async (input: PartnerDto) => {
+    const response = await addPartner(input);
+    // The value we return becomes the `fulfilled` action payload
+    return response.data;
+  }
+);
 const initialState: PartnerState = {
   totalRecord: 1,
   partnerList: [
@@ -19,7 +28,19 @@ export const partnerSlice = createSlice({
   // The `reducers` field lets us define reducers and generate associated actions
   reducers: {},
 
-  extraReducers: (builder) => {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(addPartnerAsync.fulfilled, (state, action) => {
+        state.totalRecord++;
+        state.partnerList.push({
+          pa_id: state.partnerList.length + 1,
+          pa_code: "DT000" + (state.partnerList.length + 1),
+          pa_name: action.payload.pa_name,
+          pa_note: action.payload.pa_note,
+        });
+      })
+      .addCase(addPartnerAsync.rejected, (state) => {});
+  },
 });
 
 export const partners = (state: RootState) => state.partner.partnerList;

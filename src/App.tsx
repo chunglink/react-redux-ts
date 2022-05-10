@@ -1,15 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "@/App.css";
 
-import {
-  BrowserRouter,
-  Navigate,
-  Route,
-  Routes,
-  useLocation,
-} from "react-router-dom";
-import { useAppSelector } from "@/app/hooks";
-import { isUserLoggedin } from "@/features/auth/authSlice";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "@/app/hooks";
+import { getUsersAsync, isUserLoggedin } from "@/features/auth/authSlice";
 import Login from "@/pages/login";
 import Layout from "@/shares/Layout";
 import { ToastContainer } from "react-toastify";
@@ -37,7 +31,7 @@ const App = () => {
             path="/"
             element={
               <RequireAuth>
-                <h1> aaaaaaaaaaaaaa</h1>
+                <ProtectedPage />
               </RequireAuth>
             }
           />
@@ -49,15 +43,16 @@ const App = () => {
   );
 };
 function RequireAuth({ children }: { children: JSX.Element }) {
-  const isLoggedIn = useAppSelector(isUserLoggedin);
   let location = useLocation();
-  if (!isLoggedIn) {
+
+  if (!abp.auth.getToken()) {
     return <Navigate to="/login" state={{ from: location }} replace />;
   }
 
   return children;
 }
 const ProtectedPage = () => {
+  const dispatch = useAppDispatch();
   const confirm = (event: any) => {
     // confirmDialog({
     //   header: "aaaaaaaaaaaaaaaaaa",
@@ -69,6 +64,8 @@ const ProtectedPage = () => {
     abp.event.trigger("LOADING", true);
   };
 
-  return <Button label="Confirm" onClick={(event) => confirm(event)}></Button>;
+  return (
+    <Button label="Confirm" onClick={() => dispatch(getUsersAsync())}></Button>
+  );
 };
 export default App;

@@ -1,3 +1,5 @@
+import { useAppDispatch } from "@/app/hooks";
+import { addPartnerAsync } from "@/features/partner/partnerSlice";
 import PartnerDto from "@/features/partner/types/partnerDto";
 import { Button } from "primereact/button";
 import { Dialog } from "primereact/dialog";
@@ -15,6 +17,7 @@ const CreateOrEditPartnerDialog = ({
   setVisable,
 }: ICreateOrEditPartnerDialogProps) => {
   const [formData, setFormData] = useState({});
+  const dispatch = useAppDispatch();
   const defaultValues: PartnerDto = {
     pa_id: 0,
     pa_name: "",
@@ -27,12 +30,14 @@ const CreateOrEditPartnerDialog = ({
     handleSubmit,
     reset,
   } = useForm({ defaultValues });
-  const onSubmit = (data: any) => {
-    console.log("aaaaaaaaaaaaaaaaaaaaaaa");
+  const onSubmit = (data: PartnerDto) => {
     setFormData(data);
     //setShowMessage(true);
+    dispatch(addPartnerAsync(data));
     console.log(errors);
+
     reset();
+    setVisable(false);
   };
 
   const dialogFooter = (
