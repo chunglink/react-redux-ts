@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { classNames } from "primereact/utils";
 import { Avatar } from "primereact/avatar";
-import { useAppDispatch, useAppSelector } from "@/app/hooks";
+import { useAppDispatch } from "@/app/hooks";
 import { logoutAsync } from "@/features/auth/authSlice";
 export const AppTopbar = (props: any) => {
   const dispatch = useAppDispatch();

@@ -1,6 +1,6 @@
 import { useAppDispatch } from "@/app/hooks";
 import { addPartnerAsync } from "@/features/partner/partnerSlice";
-import PartnerDto from "@/features/partner/types/partnerDto";
+import PartnerDto from "@/features/partner/interfaces/partnerDto";
 import { Button } from "primereact/button";
 import { Dialog } from "primereact/dialog";
 import { InputText } from "primereact/inputtext";
@@ -9,12 +9,12 @@ import { classNames } from "primereact/utils";
 import React, { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 interface ICreateOrEditPartnerDialogProps {
-  isVisable: boolean;
-  setVisable: (isVisable: boolean) => void;
+  isVisible: boolean;
+  setVisible: (isVisible: boolean) => void;
 }
 const CreateOrEditPartnerDialog = ({
-  isVisable,
-  setVisable,
+  isVisible,
+  setVisible,
 }: ICreateOrEditPartnerDialogProps) => {
   const [formData, setFormData] = useState({});
   const dispatch = useAppDispatch();
@@ -37,34 +37,29 @@ const CreateOrEditPartnerDialog = ({
     console.log(errors);
 
     reset();
-    setVisable(false);
+    setVisible(false);
   };
 
   const dialogFooter = (
     <div className="flex justify-content-center">
-      <Button
-        label="Lưu"
-        className="p-button-text"
-        autoFocus
-        onClick={handleSubmit(onSubmit)}
-      />
+      <Button label="Lưu" onClick={handleSubmit(onSubmit)} />
       <Button
         label="Hủy"
-        className="p-button-text"
-        autoFocus
-        onClick={() => setVisable(false)}
+        className="p-button-warning ml-2"
+        onClick={() => setVisible(false)}
       />
     </div>
   );
   return (
     <Dialog
-      visible={isVisable}
-      onHide={() => setVisable(false)}
-      position="center"
+      visible={isVisible}
+      onHide={() => setVisible(false)}
       footer={dialogFooter}
       header="Đối tác"
-      breakpoints={{ "960px": "80vw" }}
-      style={{ width: "30vw" }}
+      breakpoints={{ "960px": "75vw", "640px": "100vw" }}
+      style={{ width: window.innerWidth >= 992 ? "50vw" : "90vw" }}
+      modal
+      maximizable
     >
       <form onSubmit={handleSubmit(onSubmit)} className="p-fluid">
         <div className="field">
@@ -72,7 +67,7 @@ const CreateOrEditPartnerDialog = ({
             htmlFor="pa_name"
             className={classNames({ "p-error": errors.pa_name })}
           >
-            Name*
+            Tên *
           </label>
           <Controller
             name="pa_name"

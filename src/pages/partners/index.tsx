@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { partners, totalPartners } from "@/features/partner/partnerSlice";
-import PartnerDto from "@/features/partner/types/partnerDto";
+import PartnerDto from "@/features/partner/interfaces/partnerDto";
 import { Button } from "primereact/button";
-import { template } from "@/shares/paginatorTemplate";
+import { template } from "@/components/paginator-template";
 import CreateOrEditPartnerDialog from "./components/CreateOrEditPartnerDialog";
 import { useAppSelector } from "@/app/hooks";
 
@@ -13,7 +13,7 @@ const PartnerList = () => {
   const totalRecords: number = useAppSelector(totalPartners);
   const [rows, setRows] = useState(10);
   const [page, setPage] = useState(0);
-  const [creationDialogVisable, setCreationDialogVisable] = useState(false);
+  const [creationDialogVisible, setCreationDialogVisible] = useState(false);
 
   const indexBodyTemplate = (rowData: PartnerDto): number => {
     return (
@@ -40,7 +40,7 @@ const PartnerList = () => {
     console.log(event);
   };
   const openCreationDialog = () => {
-    setCreationDialogVisable(true);
+    setCreationDialogVisible(true);
   };
   const header = (
     <div className="table-header">
@@ -71,8 +71,8 @@ const PartnerList = () => {
         </DataTable>
       </div>
       <CreateOrEditPartnerDialog
-        isVisable={creationDialogVisable}
-        setVisable={setCreationDialogVisable}
+        isVisible={creationDialogVisible}
+        setVisible={setCreationDialogVisible}
       />
     </div>
   );

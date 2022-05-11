@@ -1,4 +1,4 @@
-import * as dataTypes from "../types";
+import * as dataTypes from "../interfaces";
 import http from "@/services/httpService";
 
 export const login = async (userdetail: dataTypes.LoginDetails) => {

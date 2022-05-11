@@ -4,9 +4,8 @@ import PrimeReact from "primereact/api";
 import { classNames } from "primereact/utils";
 import AppMenu from "./AppMenu";
 import { AppTopbar } from "./AppTopbar";
-import "prismjs/themes/prism-coy.css";
-import "./assets/layout/layout.scss";
-const Layout = () => {
+
+const AppLayout = () => {
   const [layoutMode, setLayoutMode] = useState("static");
   const [layoutColorMode, setLayoutColorMode] = useState("light");
   const [inputStyle, setInputStyle] = useState("outlined");
@@ -175,4 +174,4 @@ const Layout = () => {
   );
 };
 
-export default Layout;
+export default AppLayout;

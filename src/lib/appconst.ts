@@ -2,7 +2,9 @@ export const AppConsts = {
   appBaseUrl: process.env.API_URL,
   remoteServiceBaseUrl: process.env.API_URL,
   tokenCookieName: "AuthToken",
-
+  EVENT: {
+    LOADING: "LOADING",
+  },
   testEmail(email: string) {
     const pattern =
       /[a-zA-Z0-9]+[\.]?([a-zA-Z0-9]+)?[\@][a-z]{3,9}[\.][a-z]{2,5}/g;

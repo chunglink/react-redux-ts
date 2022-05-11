@@ -1,0 +1,12 @@
+{
+  "LOGIN":{
+    "HELP_TEXT":"Bạn không phải thành viên? Vui lòng liên hệ admin của tổ chức để được cung cấp tài khoản!",
+    "REMEMBER_ME":"Duy trì đăng nhập",
+    "EMAIL_REQUIRE":"Vui lòng nhập Email.",
+    "EMAIL_INVALID":"Email không hợp lệ. VD: example@email.com",
+    "PASSWORD_REQUIRE":"Vui lòng nhập mật khẩu.",
+    "PASSWORD_LABEL":"Mật khẩu",
+    "SUBMIT_BTN_LABEL":"Đăng nhập",
+    "ADFS_BTN_LABEL":"Đăng nhập với FPT ADFS"
+  }
+}

@@ -1,4 +1,4 @@
-import { Toastr } from "./../shares/Toastr";
+import { Toastr } from "../components/toast";
 
 import axios from "axios";
 import { AppConsts } from "@/lib/appconst";
@@ -19,7 +19,7 @@ const http = axios.create({
 
 http.interceptors.request.use(
   function (config: any) {
-    abp.event.trigger("LOADING", true);
+    abp.event.trigger(AppConsts.EVENT.LOADING, true);
     if (!!abp.auth.getToken()) {
       config.headers.common["Authorization"] = "Bearer " + abp.auth.getToken();
     }
@@ -27,14 +27,14 @@ http.interceptors.request.use(
     return config;
   },
   function (error) {
-    abp.event.trigger("LOADING", false);
+    abp.event.trigger(AppConsts.EVENT.LOADING, false);
     return Promise.reject(error);
   }
 );
 
 http.interceptors.response.use(
   (response) => {
-    abp.event.trigger("LOADING", false);
+    abp.event.trigger(AppConsts.EVENT.LOADING, false);
     return response;
   },
   (error) => {
@@ -44,7 +44,7 @@ http.interceptors.response.use(
       !!error.response.data.error.message &&
       error.response.data.error.details
     ) {
-      abp.event.trigger("LOADING", false);
+      abp.event.trigger(AppConsts.EVENT.LOADING, false);
       Toastr.error(
         error.response.data.error.details || DEFAULT_ERROR_NOTIFICATION
       );
@@ -53,7 +53,7 @@ http.interceptors.response.use(
       !!error.response.data.error &&
       !!error.response.data.error.message
     ) {
-      abp.event.trigger("LOADING", false);
+      abp.event.trigger(AppConsts.EVENT.LOADING, false);
       Toastr.error(
         error.response.data.error.message || DEFAULT_ERROR_NOTIFICATION
       );

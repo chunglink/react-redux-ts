@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 import mockAdapter from "axios-mock-adapter";
-import PartnerDto from "../types/partnerDto";
+import PartnerDto from "../interfaces/partnerDto";
 
 const mock = new mockAdapter(axios);
 mock.onPost("/addPartner").reply(200, {

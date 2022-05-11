@@ -1,8 +1,8 @@
-import PartnerDto from "@/features/partner/types/partnerDto";
+import PartnerDto from "@/features/partner/interfaces/partnerDto";
 import { RootState } from "@/app/store";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { addPartner } from "./api";
-import PartnerState from "./types/partnerState";
+import PartnerState from "./interfaces/partnerState";
 export const addPartnerAsync = createAsyncThunk(
   "partner/add",
   async (input: PartnerDto) => {

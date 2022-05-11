@@ -5,7 +5,7 @@ interface Iprops {
   isLoading: boolean | any;
 }
 
-const FullPageLoader = ({ isLoading = false }: Iprops) => {
+const Spinner = ({ isLoading = false }: Iprops) => {
   return (
     isLoading && (
       <div className="spinner">
@@ -15,4 +15,4 @@ const FullPageLoader = ({ isLoading = false }: Iprops) => {
   );
 };
 
-export default FullPageLoader;
+export default Spinner;

@@ -1,9 +1,9 @@
 import { getUsers } from "./api/index";
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState, AppThunk } from "../../app/store";
-import { UserState } from "./types";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { RootState } from "../../app/store";
+import { UserState } from "./interfaces";
 import { login } from "./api";
-import * as dataTypes from "./types";
+import * as dataTypes from "./interfaces";
 declare var abp: any;
 export const loginAsync = createAsyncThunk(
   "auth/login",
