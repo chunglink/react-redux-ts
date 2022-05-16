@@ -35,8 +35,8 @@
     "web-vitals": "^2.1.0"
   },
   "scripts": {
-    "start": "webpack serve --port 3000 --mode development --open --hot",
-    "build": "webpack --mode production"
+    "start": "webpack serve --port 3000 --env config=development --env development --mode development --open --hot",
+    "build": "webpack --env config=production --env production --mode production"
   },
   "eslintConfig": {
     "extends": [

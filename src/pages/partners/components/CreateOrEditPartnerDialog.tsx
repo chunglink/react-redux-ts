@@ -6,16 +6,14 @@ import { Dialog } from "primereact/dialog";
 import { InputText } from "primereact/inputtext";
 import { InputTextarea } from "primereact/inputtextarea";
 import { classNames } from "primereact/utils";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 interface ICreateOrEditPartnerDialogProps {
   isVisible: boolean;
   setVisible: (isVisible: boolean) => void;
+  defaultModel: PartnerDto;
 }
-const CreateOrEditPartnerDialog = ({
-  isVisible,
-  setVisible,
-}: ICreateOrEditPartnerDialogProps) => {
+const CreateOrEditPartnerDialog = (props: ICreateOrEditPartnerDialogProps) => {
   const [formData, setFormData] = useState({});
   const dispatch = useAppDispatch();
   const defaultValues: PartnerDto = {
@@ -24,20 +22,24 @@ const CreateOrEditPartnerDialog = ({
     pa_code: "",
     pa_note: "",
   };
+
   const {
     control,
     formState: { errors },
     handleSubmit,
     reset,
   } = useForm({ defaultValues });
+  useEffect(() => {
+    reset({
+      ...props.defaultModel,
+    });
+  }, [props.defaultModel, reset]);
+
   const onSubmit = (data: PartnerDto) => {
     setFormData(data);
-    //setShowMessage(true);
     dispatch(addPartnerAsync(data));
-    console.log(errors);
-
     reset();
-    setVisible(false);
+    props.setVisible(false);
   };
 
   const dialogFooter = (
@@ -46,14 +48,14 @@ const CreateOrEditPartnerDialog = ({
       <Button
         label="Hủy"
         className="p-button-warning ml-2"
-        onClick={() => setVisible(false)}
+        onClick={() => props.setVisible(false)}
       />
     </div>
   );
   return (
     <Dialog
-      visible={isVisible}
-      onHide={() => setVisible(false)}
+      visible={props.isVisible}
+      onHide={() => props.setVisible(false)}
       footer={dialogFooter}
       header="Đối tác"
       breakpoints={{ "960px": "75vw", "640px": "100vw" }}

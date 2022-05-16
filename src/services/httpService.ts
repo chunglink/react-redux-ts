@@ -1,7 +1,7 @@
 import { Toastr } from "../components/toast";
 
 import axios from "axios";
-import { AppConsts } from "@/lib/appconst";
+import { AppConsts } from "@/lib/appConst";
 
 declare var abp: any;
 const qs = require("qs");

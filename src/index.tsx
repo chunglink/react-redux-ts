@@ -15,7 +15,7 @@ import "primeicons/primeicons.css";
 import "primeflex/primeflex.css";
 import "react-toastify/dist/ReactToastify.min.css";
 import "prismjs/themes/prism-coy.css";
-import "@/shares/assets/layout/layout.scss";
+import "@/assets/layout/layout.scss";
 //const history = createBrowserHistory();
 //const store = configureStore(history);
 

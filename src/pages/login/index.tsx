@@ -59,7 +59,9 @@ const Login = () => {
         <div className="lg:col-8 md:col-12">
           <div className="text-center mb-5 flex">
             <img src="logo.png" alt="hyper" height={50} />
-            <div className="text-900 text-3xl font-medium ml-3">PMB</div>
+            <div className="text-900 text-3xl font-medium ml-3 align-self-center">
+              PMB
+            </div>
           </div>
           <form onSubmit={handleSubmit(onSubmit)} className="p-fluid">
             <div className="field">

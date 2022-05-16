@@ -14,6 +14,12 @@ const PartnerList = () => {
   const [rows, setRows] = useState(10);
   const [page, setPage] = useState(0);
   const [creationDialogVisible, setCreationDialogVisible] = useState(false);
+  const [selectedPartner, setSelectedPartner] = useState<PartnerDto>({
+    pa_id: 0,
+    pa_name: "",
+    pa_code: "",
+    pa_note: "",
+  });
 
   const indexBodyTemplate = (rowData: PartnerDto): number => {
     return (
@@ -26,7 +32,7 @@ const PartnerList = () => {
         <Button
           icon="pi pi-pencil"
           className="p-button-rounded p-button-success mr-2"
-          onClick={() => console.log(rowData)}
+          onClick={() => onBtnEditClick(rowData)}
         />
         <Button
           icon="pi pi-trash"
@@ -40,6 +46,16 @@ const PartnerList = () => {
     console.log(event);
   };
   const openCreationDialog = () => {
+    setSelectedPartner({
+      pa_id: 0,
+      pa_name: "",
+      pa_code: "",
+      pa_note: "",
+    });
+    setCreationDialogVisible(true);
+  };
+  const onBtnEditClick = async (rowData: PartnerDto) => {
+    await setSelectedPartner({ ...rowData });
     setCreationDialogVisible(true);
   };
   const header = (
@@ -73,6 +89,7 @@ const PartnerList = () => {
       <CreateOrEditPartnerDialog
         isVisible={creationDialogVisible}
         setVisible={setCreationDialogVisible}
+        defaultModel={selectedPartner}
       />
     </div>
   );
