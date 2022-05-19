@@ -4,7 +4,7 @@ import { Column } from "primereact/column";
 import { partners, totalPartners } from "@/features/partner/partnerSlice";
 import PartnerDto from "@/features/partner/interfaces/partnerDto";
 import { Button } from "primereact/button";
-import { template } from "@/components/paginator-template";
+import { template } from "@/components/paginator-template/Paginator";
 import CreateOrEditPartnerDialog from "./components/CreateOrEditPartnerDialog";
 import { useAppSelector } from "@/app/hooks";
 
