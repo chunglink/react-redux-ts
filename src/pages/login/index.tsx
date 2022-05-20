@@ -10,8 +10,8 @@ import { useForm, Controller } from "react-hook-form";
 import { classNames } from "primereact/utils";
 import { Divider } from "primereact/divider";
 import { Password } from "primereact/password";
-import Logo from "../../assets/images/logo.png";
-import Banner from "../../assets/images/banner.png";
+// import Logo from "../../assets/images/logo.png";
+// import Banner from "../../assets/images/banner.png";
 const Login = () => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
@@ -53,14 +53,14 @@ const Login = () => {
 
   return (
     <div className="flex" style={{ height: "100vh", backgroundColor: "white" }}>
-      <div
+      {/* <div
         className="hidden lg:block w-6 bg-no-repeat bg-cover"
         style={{ backgroundImage: `url(${Banner})` }}
-      ></div>
+      ></div> */}
       <div className="lg:w-6 md:w-12 md:p-4 flex align-items-center justify-content-center">
         <div className="lg:col-8 md:col-12">
           <div className="text-center mb-5 flex">
-            <img src={Logo} alt="hyper" height={50} />
+            {/* <img src={Logo} alt="hyper" height={50} /> */}
             <div className="text-900 text-3xl font-medium ml-3 align-self-center">
               PMB
             </div>

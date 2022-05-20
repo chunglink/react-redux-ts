@@ -4,14 +4,14 @@ import { classNames } from "primereact/utils";
 import { Avatar } from "primereact/avatar";
 import { useAppDispatch } from "@/app/hooks";
 import { logoutAsync } from "@/features/auth/authSlice";
-import LogoHome from "../../assets/images/logo_home.png";
+//import LogoHome from "../../assets/images/logo_home.png";
 export const AppTopbar = (props: any) => {
   const dispatch = useAppDispatch();
   return (
     <div className="layout-topbar">
-      <Link to="/" className="layout-topbar-logo">
+      {/* <Link to="/" className="layout-topbar-logo">
         <img src={LogoHome} alt="logo" />
-      </Link>
+      </Link> */}
 
       <button
         type="button"
