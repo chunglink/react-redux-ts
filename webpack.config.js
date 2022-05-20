@@ -52,6 +52,12 @@ module.exports = (env) => {
           use: [
             {
               loader: 'file-loader',
+              options: {
+                // name: '[name].[ext]',
+                // name: '[path][name].[hash].[ext]',
+                name: './src/assets/images/[hash].[ext]',
+                // outputPath: 'src/assets/images/',
+            },
             },
           ],
         },
