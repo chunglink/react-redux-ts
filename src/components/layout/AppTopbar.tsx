@@ -9,9 +9,9 @@ export const AppTopbar = (props: any) => {
   const dispatch = useAppDispatch();
   return (
     <div className="layout-topbar">
-      {/* <Link to="/" className="layout-topbar-logo">
-        <img src={LogoHome} alt="logo" />
-      </Link> */}
+      <Link to="/" className="layout-topbar-logo">
+        <img src="logo_home.png" alt="logo" />
+      </Link>
 
       <button
         type="button"
