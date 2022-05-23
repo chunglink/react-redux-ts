@@ -27,7 +27,7 @@
       "@/*": ["./src/*"],
       "@@/*": ["./*"],
       "@lib/*": ["./src/lib/*"],
-      "src/*": ["./src/*"]
+      "@assets/*": ["./src/assets/*"]
     }
   },
   "exclude": ["node_modules"]

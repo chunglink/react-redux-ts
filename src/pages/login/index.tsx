@@ -10,8 +10,8 @@ import { useForm, Controller } from "react-hook-form";
 import { classNames } from "primereact/utils";
 import { Divider } from "primereact/divider";
 import { Password } from "primereact/password";
-import Logo from "src/assets/images/logo.png";
-import Banner from "src/assets/images/banner.png";
+import Logo from "@assets/images/logo.png";
+import Banner from "@assets/images/banner.png";
 const Login = () => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
